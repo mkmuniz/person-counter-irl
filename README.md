@@ -21,10 +21,12 @@ URL='your mongodb url here'
 
 ### MongoDB
 [x] create connection with MongoDB
+
 [x] create counter model
 
 ### Routes
 [x] GET /counter/:id
+
 [x] POST /counter:
 ```
 {

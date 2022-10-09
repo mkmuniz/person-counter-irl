@@ -5,21 +5,21 @@ type Counter = {
   persons: Number
 }
 
-@Controller()
+@Controller('counter')
 export class CounterController {
   constructor(private readonly counterService: CounterService) {}
 
-  @Get('/counter/:id')
+  @Get(':id')
   async get(@Param('id') id: String) {
     return this.counterService.getCount(id);
   }
 
-  @Post('/counter')
+  @Post()
   async create(@Body() body: Counter) {
     return this.counterService.createPerson(body);
   }
 
-  @Put('/counter/:id')
+  @Put(':id')
   async count(@Param('id') id: String, @Body() body: Counter) {
     return this.counterService.countPerson(id, body);
   }

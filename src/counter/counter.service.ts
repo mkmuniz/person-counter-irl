@@ -29,6 +29,7 @@ export class CounterService {
     const sum = [user.persons, body.persons];
 
     const total = sum.reduce((total, person) => total + person, 0);
+    console.log(body);
     return await this.counterModel.findByIdAndUpdate(id, { persons: total }).exec();
   }
 }

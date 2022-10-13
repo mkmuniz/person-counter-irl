@@ -28,8 +28,14 @@ export class CounterService {
 
     const sum = [user.persons, body.persons];
 
-    const total = sum.reduce((total, person) => total + person, 0);
     console.log(body);
+    let total = sum.reduce((total, person) => total + person, 0);
+
     return await this.counterModel.findByIdAndUpdate(id, { persons: total }).exec();
+  }
+
+  async deleteCount(id: String) {
+    const result = await this.counterModel.findByIdAndDelete(id).exec();
+    return result;
   }
 }

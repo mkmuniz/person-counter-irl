@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, Post, Put } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Patch, Post, Put } from '@nestjs/common';
 import { CounterService } from './counter.service';
 
 type Counter = {
@@ -24,9 +24,14 @@ export class CounterController {
     return this.counterService.createPerson(body);
   }
 
-  @Put(':id')
+  @Patch(':id')
   async count(@Param('id') id: String, @Body() body: Counter) {
     return this.counterService.countPerson(id, body);
+  }
+
+  @Delete(':id')
+  async delete(@Param('id') id: String) {
+    return this.counterService.deleteCount(id);
   }
 }
 

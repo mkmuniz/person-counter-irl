@@ -9,6 +9,11 @@ type Counter = {
 export class CounterService {
   constructor(@InjectModel('Counter') private readonly counterModel) {}
 
+  async getAllCounters() {
+    const result = await this.counterModel.find().exec();
+    return result;
+  }
+
   async getCount(id: String) {
     const result = await this.counterModel.findById(id).exec();
     return result;
@@ -20,6 +25,10 @@ export class CounterService {
 
   async countPerson(id: String, body: Counter) {
     const user = await this.getCount(id);
-    return await this.counterModel.findByIdAndUpdate(id, { persons: user.persons + body.persons }).exec();
+
+    const sum = [user.persons, body.persons];
+
+    const total = sum.reduce((total, person) => total + person, 0);
+    return await this.counterModel.findByIdAndUpdate(id, { persons: total }).exec();
   }
 }

@@ -9,6 +9,11 @@ type Counter = {
 export class CounterController {
   constructor(private readonly counterService: CounterService) {}
 
+  @Get('')
+  async getAll() {
+    return this.counterService.getAllCounters();
+  }
+
   @Get(':id')
   async get(@Param('id') id: String) {
     return this.counterService.getCount(id);

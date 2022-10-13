@@ -26,9 +26,9 @@ export class CounterService {
   async countPerson(id: String, body: Counter) {
     const user = await this.getCount(id);
 
-    const sum = [user.persons, body.persons];
+    const sum = [user.persons, Number(body.persons)];
 
-    console.log(body);
+    console.log(body)
     let total = sum.reduce((total, person) => total + person, 0);
 
     return await this.counterModel.findByIdAndUpdate(id, { persons: total }).exec();
